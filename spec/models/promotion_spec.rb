@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: promotions
+#
+#  id         :integer          not null, primary key
+#  active     :boolean
+#  code       :string
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  product_id :integer
+#
+# Indexes
+#
+#  index_promotions_on_product_id  (product_id)
+#
+# Foreign Keys
+#
+#  product_id  (product_id => products.id)
+#
 RSpec.describe Promotion, type: :model do
   let(:promotion) { create(:promotion) }
 
@@ -37,19 +57,19 @@ RSpec.describe Promotion, type: :model do
       expect(promotion.code).to_not be_nil
       expect(promotion.code).to_not eq(duplicate_promotion.code)
     end
+  end
 
-    context "when promo rule is present" do
-      let!(:promotion_rule) { create(:promotion_rule, promotion: promotion) }
+  context "when promo rule is present" do
+    let!(:promotion_rule) { create(:promotion_rule, promotion: promotion) }
 
-      it "is valid with a promo rule" do
-        expect(promotion).to be_valid
-      end
+    it "is valid with a promo rule" do
+      expect(promotion).to be_valid
+    end
 
-      it "destroys promo rule when promotion is destroyed" do
-        expect {
-          promotion.destroy
-        }.to change { PromotionRule.count }.by(-1)
-      end
+    it "destroys promo rule when promotion is destroyed" do
+      expect {
+        promotion.destroy
+      }.to change { PromotionRule.count }.by(-1)
     end
   end
 end
