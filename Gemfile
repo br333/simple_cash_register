@@ -50,6 +50,8 @@ group :development, :test do
   gem "rspec-rails", "~> 8.0", ">= 8.0.1"
 
   gem "factory_bot_rails", "~> 6.5"
+
+  gem "reek", "~> 6.5"
 end
 
 group :development do

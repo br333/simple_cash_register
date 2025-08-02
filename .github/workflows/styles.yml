@@ -1,0 +1,40 @@
+name: Styles
+
+env:
+  RAILS_ENV: 'test'
+  RAKE_ENV: 'test'
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: .ruby-version
+        bundler-cache: true
+
+    - name: Run Rubocop
+      run: bin/rubocop -f github
+
+  reek:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: .ruby-version
+        bundler-cache: true
+
+    - name: Run Reek
+      run: bundle exec reek -c .reek.yml
