@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id          :integer          not null, primary key
+#  description :string
+#  name        :string
+#  price       :decimal(10, 2)   default(0.0), not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 RSpec.describe Product, type: :model do
   let(:product) { create(:product) }
 

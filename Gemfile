@@ -52,12 +52,14 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.5"
 
   gem "reek", "~> 6.5"
-  gem "pry-byebug"
 
   gem "faker"
+
+  gem "pry-byebug"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "annotaterb"
 end
