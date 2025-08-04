@@ -11,4 +11,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  root "cart#index"
+
+  resources :orders do
+    collection do
+      post :update_cart
+    end
+  end
+  resources :cart, only: [ :index ]
 end
