@@ -2,6 +2,7 @@ module Cart
   class CalculatorService < BaseService
     def call
       calculate_order_items_subtotal
+      calculate_order_items_discount_price
       calculate_order_items_total_price
       order.save
       order
@@ -23,7 +24,15 @@ module Cart
 
     def calculate_order_items_total_price
       # can add more
-      order.total_price = calculate_order_items_discount_price
+      order.total_price = order.order_items.map do |order_item|
+        order_item.total_price = order_item.discount_price
+        order_item.save!
+        order_item.total_price
+      end.sum
+    end
+
+    def calculate_order_total_price
+      order.total_price = calculate_order_items_total_price
     end
 
     def calculate_order_items_discount_price

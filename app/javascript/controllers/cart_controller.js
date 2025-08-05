@@ -102,13 +102,13 @@ export default class extends Controller {
       subTotalElement.innerText = `€0.00`
       return
     }
-
+    
     cart.order_items.forEach(item => {
       const tr = document.createElement("tr")
       tr.innerHTML = `
         <td>${item.product?.name || "Unknown"}</td>
         <td>${item.quantity}</td>
-        <td class="has-text-right">€${parseFloat(item.product?.price || 0)}</td>
+        <td class="has-text-right">€${parseFloat(item.subtotal || 0)}</td>
         <td class="has-text-right">€${parseFloat(item.total_price || 0)}</td>
       `
       tbody.appendChild(tr)
