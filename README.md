@@ -1,4 +1,5 @@
 # simple_cash_register
+https://simplecashregister-production.up.railway.app/
 
 This Ruby on Rails application supports a shopping cart with dynamic pricing rules and promotions, including:
 
